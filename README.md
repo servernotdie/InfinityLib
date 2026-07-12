@@ -107,3 +107,8 @@ Then change your main plugin class to extend `AbstractAddon` and implement the c
 You will need to use `enable()` and `disable()` instead of `onEnable()` and `onDisable`.
 Make sure you don't call `super.onEnable/Disable`.
 Your updater and config setup is now handled, make sure to test that it's working though!
+
+## Này bản fork từ upstream của nhóm dev người TQ xong chỉnh tí 
+Credit: 
+---
+[Craft233MC](https://github.com/Craft233MC/InfinityLib)

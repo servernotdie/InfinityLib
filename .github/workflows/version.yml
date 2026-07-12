@@ -3,7 +3,7 @@ name: Check Version
 on:
   pull_request:
     branches:
-      - master
+      - main
     paths:
       - 'src/**'
       - 'pom.xml'

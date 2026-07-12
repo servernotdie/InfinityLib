@@ -36,13 +36,6 @@
         </repository>
     </repositories>
 
-    <distributionManagement>
-        <repository>
-            <id>neokoni-repo</id>
-            <url>https://repo.neokoni.ink/snapshots</url>
-        </repository>
-    </distributionManagement>
-
     <dependencies>
         <dependency>
             <groupId>org.spigotmc</groupId>
