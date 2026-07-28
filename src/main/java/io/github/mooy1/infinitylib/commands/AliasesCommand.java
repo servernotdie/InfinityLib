@@ -13,8 +13,8 @@ final class AliasesCommand extends SubCommand {
     private final String message;
 
     AliasesCommand(PluginCommand command) {
-        super("aliases", "列出该指令所有可用的别名");
-        message = "/" + command.getName() + " 的可用别名: " + command.getAliases();
+        super("aliases", "Liệt kê tất cả các bí danh khả dụng cho lệnh này");
+        message = "/" + command.getName() + " bí danh khả dụng: " + command.getAliases();
     }
 
     @Override

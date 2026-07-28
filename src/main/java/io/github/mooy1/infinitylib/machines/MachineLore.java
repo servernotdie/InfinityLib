@@ -27,7 +27,7 @@ public final class MachineLore {
 
     @Nonnull
     public static String energyBuffer(int energy) {
-        return PREFIX + format(energy) + " J 可储存";
+        return PREFIX + format(energy) + " J lưu trữ";
     }
 
     @Nonnull
@@ -37,7 +37,7 @@ public final class MachineLore {
 
     @Nonnull
     public static String speed(int speed) {
-        return PREFIX + "速度: &b" + speed + 'x';
+        return PREFIX + "Tốc độ: &b" + speed + 'x';
     }
 
     @Nonnull

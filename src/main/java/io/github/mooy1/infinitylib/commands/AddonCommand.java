@@ -34,7 +34,7 @@ public final class AddonCommand extends ParentCommand implements TabExecutor, Li
 
     public AddonCommand(String command) {
         this(Objects.requireNonNull(AbstractAddon.instance().getCommand(command),
-                "指令 '" + command + "' 不存在! 在 plugin.yml 中添加该指令!"));
+                "Lệnh '" + command + "' không tồn tại! Hãy thêm lệnh này vào plugin.yml!"));
     }
 
     public AddonCommand(PluginCommand command) {

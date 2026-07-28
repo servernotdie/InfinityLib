@@ -16,15 +16,15 @@ final class InfoCommand extends SubCommand {
     private final String[] message;
 
     InfoCommand(SlimefunAddon addon) {
-        super("info", "显示附属插件与Slimefun的版本信息，以及discord服务器");
+        super("info", "Hiển thị thông tin phiên bản của addon và Slimefun, cùng với Discord");
         Slimefun slimefun = Slimefun.instance();
         message = new String[] {
                 "",
-                ChatColors.color("&b" + addon.getName() + " 信息"),
-                ChatColors.color("&bSlimefun 版本: &7" + (slimefun == null ? "null" : slimefun.getPluginVersion())),
+                ChatColors.color("&b" + addon.getName() + " Thông tin"),
+                ChatColors.color("&bSlimefun Phiên bản: &7" + (slimefun == null ? "null" : slimefun.getPluginVersion())),
                 ChatColors.color("&bSlimefun Discord: &7Discord.gg/slimefun"),
-                ChatColors.color("&b附属插件 版本: &7" + addon.getPluginVersion()),
-                ChatColors.color("&b附属社区 Discord: &7Discord.gg/SqD3gg5SAU"),
+                ChatColors.color("&bAddon Phiên bản: &7" + addon.getPluginVersion()),
+                ChatColors.color("&bCộng đồng Discord: &7Discord.gg/SqD3gg5SAU"),
                 ChatColors.color("&bGithub: &7" + addon.getBugTrackerURL()),
                 ""
         };
