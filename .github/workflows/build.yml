@@ -44,13 +44,14 @@ jobs:
           echo "TAG=$TAG" >> "$GITHUB_ENV"
 
       - name: Build with Maven
-        run: mvn package --file pom.xml
+        run: mvn package -Dmaven.deploy.skip=true --file pom.xml
 
       - name: Get build artifact filename
         run: |
           cd target
           rm -rf original*
-          echo "FILE=$(ls | grep jar)" >> $GITHUB_ENV
+          FILE=$(find . -maxdepth 1 -type f -name "*.jar" -printf "%f\n")
+          echo "FILE=$FILE" >> "$GITHUB_ENV"
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
