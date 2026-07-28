@@ -50,7 +50,7 @@ jobs:
         run: |
           cd target
           rm -rf original*
-          FILE=$(find . -maxdepth 1 -type f -name "*.jar" -printf "%f\n")
+          FILE=$(find . -maxdepth 1 -type f -name "*.jar" ! -name "*-sources.jar" -printf "%f\n")
           echo "FILE=$FILE" >> "$GITHUB_ENV"
 
       - name: Upload Artifact
