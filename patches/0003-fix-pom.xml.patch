@@ -1,0 +1,25 @@
+From 2e60c1f43ceffdd049690df2484b2b2a978d568b Mon Sep 17 00:00:00 2001
+From: mytai20100 <142713298+Mytai20100@users.noreply.github.com>
+Date: Sun, 12 Jul 2026 16:22:31 +0700
+Subject: [PATCH 3/4] fix: pom.xml
+
+---
+ pom.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/pom.xml b/pom.xml
+index 7a87dcb..dba1245 100644
+--- a/pom.xml
++++ b/pom.xml
+@@ -54,7 +54,7 @@
+         <dependency>
+             <groupId>org.projectlombok</groupId>
+             <artifactId>lombok</artifactId>
+-            <version>1.18.20</version>
++            <version>1.18.36</version>
+             <scope>provided</scope>
+         </dependency>
+ 
+-- 
+2.47.3
+

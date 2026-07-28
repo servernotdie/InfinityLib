@@ -1,0 +1,292 @@
+From 297d00da58f73b3c6f4047a07889f1262cdc112e Mon Sep 17 00:00:00 2001
+From: mytai20100 <142713298+Mytai20100@users.noreply.github.com>
+Date: Sun, 12 Jul 2026 16:05:47 +0700
+Subject: [PATCH 1/4] chore use release
+
+---
+ .github/workflows/build.yml   | 70 +++++++++++++++++++++++++++++++++++
+ .github/workflows/maven.yml   | 57 ----------------------------
+ .github/workflows/release.yml | 67 ---------------------------------
+ .github/workflows/version.yml |  4 +-
+ README.md                     |  5 +++
+ pom.xml                       |  9 +----
+ 6 files changed, 78 insertions(+), 134 deletions(-)
+ create mode 100644 .github/workflows/build.yml
+ delete mode 100644 .github/workflows/maven.yml
+ delete mode 100644 .github/workflows/release.yml
+
+diff --git a/.github/workflows/build.yml b/.github/workflows/build.yml
+new file mode 100644
+index 0000000..c36135a
+--- /dev/null
++++ b/.github/workflows/build.yml
+@@ -0,0 +1,70 @@
++name: Build & Release
++
++on:
++  push:
++    branches:
++      - main
++    paths:
++      - 'src/**'
++      - 'pom.xml'
++  workflow_dispatch:
++
++permissions:
++  contents: write
++
++jobs:
++  build:
++    runs-on: ubuntu-latest
++    steps:
++      - uses: actions/checkout@v4
++        with:
++          fetch-depth: 0
++
++      - uses: actions/setup-java@v4
++        with:
++          distribution: 'zulu'
++          java-version: 17
++          java-package: jdk
++          architecture: x64
++          cache: maven
++
++      - name: Cache Maven packages
++        uses: actions/cache@v4
++        with:
++          path: ~/.m2
++          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
++          restore-keys: ${{ runner.os }}-m2
++
++      - name: Build with Maven
++        run: mvn package --file pom.xml
++
++      - name: Select jar
++        run: |
++          cd target
++          rm -rf original*
++          rm -rf *sources.jar
++          echo "FILE=$(ls | grep jar)" >> $GITHUB_ENV
++
++      - name: Upload build artifact
++        uses: actions/upload-artifact@v4
++        with:
++          name: ${{ env.FILE }}
++          path: target/${{ env.FILE }}
++
++      - name: Create tag
++        id: tag
++        run: |
++          TAG="build-${{ github.run_number }}"
++          git tag "$TAG"
++          git push origin "$TAG"
++          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
++
++      - name: Create release
++        uses: softprops/action-gh-release@v2
++        with:
++          tag_name: ${{ steps.tag.outputs.tag }}
++          name: Build ${{ github.run_number }}
++          generate_release_notes: true
++          files: target/${{ env.FILE }}
++        env:
++          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+\ No newline at end of file
+diff --git a/.github/workflows/maven.yml b/.github/workflows/maven.yml
+deleted file mode 100644
+index 5f18a0e..0000000
+--- a/.github/workflows/maven.yml
++++ /dev/null
+@@ -1,57 +0,0 @@
+-name: Maven Build
+-
+-on:
+-  workflow_dispatch:
+-  push:
+-    branches-ignore:
+-      - master
+-    paths:
+-      - 'src/**'
+-      - 'pom.xml'
+-  pull_request:
+-    paths:
+-      - 'src/**'
+-      - 'pom.xml'
+-
+-jobs:
+-  build:
+-    runs-on: ubuntu-latest
+-    steps:
+-      - uses: actions/checkout@v2.3.4
+-
+-      - uses: actions/setup-java@v3
+-        with:
+-          distribution: 'zulu'
+-          java-version: 17
+-          java-package: jdk
+-          architecture: x64
+-          cache: maven
+-
+-      - name: Cache Maven packages
+-        uses: actions/cache@v3
+-        with:
+-          path: ~/.m2
+-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+-          restore-keys: ${{ runner.os }}-m2
+-
+-      - run: mvn package --file pom.xml
+-
+-      - name: Select jar
+-        run: |
+-          cd target
+-          rm -rf original*
+-          rm -rf *sources.jar
+-          echo "FILE=$(ls | grep jar)" >> $GITHUB_ENV
+-
+-      - name: Upload Artifact
+-        uses: actions/upload-artifact@v4
+-        with:
+-          name: ${{ env.FILE }}
+-          path: target/${{ env.FILE }}
+-
+-      - name: Upload to repo
+-        run: mvn -s .mvn/settings.xml -B deploy
+-        env:
+-          MAVEN_ACCOUNT: '${{ secrets.MAVEN_ACCOUNT }}'
+-          MAVEN_PASSWORD: '${{ secrets.MAVEN_PASSWORD }}'
+-
+diff --git a/.github/workflows/release.yml b/.github/workflows/release.yml
+deleted file mode 100644
+index 2f394ae..0000000
+--- a/.github/workflows/release.yml
++++ /dev/null
+@@ -1,67 +0,0 @@
+-name: Create Release
+-
+-on:
+-  push:
+-    branches:
+-      - master
+-    paths:
+-      - 'src/**'
+-      - 'pom.xml'
+-  workflow_dispatch:
+-
+-jobs:
+-  release:
+-    if: github.repository_owner == 'SlimefunGuguProject'
+-    runs-on: ubuntu-latest
+-    steps:
+-      - uses: actions/checkout@v2.3.4
+-        with:
+-          fetch-depth: 0
+-
+-      - uses: actions/setup-java@v2.3.0
+-        with:
+-          distribution: adopt
+-          java-version: '8'
+-          cache: 'maven'
+-
+-      - run: mvn package --file pom.xml
+-
+-      - id: run
+-        run: |
+-          newVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+-          echo New Version: $newVersion
+-          echo ::set-output name=new-version::$newVersion
+-
+-          # Modified From: https://github.com/Bullrich/generate-release-changelog
+-          tag=$(git tag | sort -r --version-sort | head -n1)
+-
+-          if [ "$tag" ]; then
+-            changelog=$(git log --oneline --no-decorate $tag..HEAD)
+-          else
+-            changelog=$(git log --oneline --no-decorate)
+-            tag="0.0.0"
+-          fi
+-
+-          echo Old Version: $tag
+-          echo ::set-output name=old-version::$tag
+-
+-          changelog="${changelog//'%'/'%25'}"
+-          changelog="${changelog//$'\n'/'%0A' - }"
+-          changelog=" - ${changelog//$'\r'/'%0D'}"
+-          echo "$changelog"
+-          echo ::set-output name=changelog::$changelog
+-
+-      - uses: madhead/semver-utils@1.4.3
+-        id: comparison
+-        with:
+-          version: ${{ steps.run.outputs.new-version }}
+-          compare-to: ${{ steps.run.outputs.old-version }}
+-
+-      - uses: actions/create-release@v1.1.4
+-        if: steps.comparison.outputs.comparison-result == '>'
+-        env:
+-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+-        with:
+-          tag_name: ${{ steps.run.outputs.new-version }}
+-          release_name: Release v${{ steps.run.outputs.new-version }}
+-          body: ${{ steps.run.outputs.changelog }}
+diff --git a/.github/workflows/version.yml b/.github/workflows/version.yml
+index 75789f4..b549264 100644
+--- a/.github/workflows/version.yml
++++ b/.github/workflows/version.yml
+@@ -3,7 +3,7 @@ name: Check Version
+ on:
+   pull_request:
+     branches:
+-      - master
++      - main
+     paths:
+       - 'src/**'
+       - 'pom.xml'
+@@ -38,4 +38,4 @@ jobs:
+           version: ${{ steps.run.outputs.new-version }}
+           compare-to: ${{ steps.run.outputs.old-version }}
+ 
+-      - run: '[[ ">" == "${{ steps.comparison.outputs.comparison-result }}" ]]'
++      - run: '[[ ">" == "${{ steps.comparison.outputs.comparison-result }}" ]]'
+\ No newline at end of file
+diff --git a/README.md b/README.md
+index 1996f69..85034c5 100644
+--- a/README.md
++++ b/README.md
+@@ -107,3 +107,8 @@ Then change your main plugin class to extend `AbstractAddon` and implement the c
+ You will need to use `enable()` and `disable()` instead of `onEnable()` and `onDisable`.
+ Make sure you don't call `super.onEnable/Disable`.
+ Your updater and config setup is now handled, make sure to test that it's working though!
++
++## Này bản fork từ upstream của nhóm dev người TQ xong chỉnh tí 
++Credit: 
++---
++[Craft233MC](https://github.com/Craft233MC/InfinityLib)
+\ No newline at end of file
+diff --git a/pom.xml b/pom.xml
+index 9cc8342..7a87dcb 100644
+--- a/pom.xml
++++ b/pom.xml
+@@ -36,13 +36,6 @@
+         </repository>
+     </repositories>
+ 
+-    <distributionManagement>
+-        <repository>
+-            <id>neokoni-repo</id>
+-            <url>https://repo.neokoni.ink/snapshots</url>
+-        </repository>
+-    </distributionManagement>
+-
+     <dependencies>
+         <dependency>
+             <groupId>org.spigotmc</groupId>
+@@ -179,4 +172,4 @@
+             </plugin>
+         </plugins>
+     </build>
+-</project>
++</project>
+\ No newline at end of file
+-- 
+2.47.3
+

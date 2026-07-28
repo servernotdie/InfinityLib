@@ -1,0 +1,328 @@
+From f854e1e6125f3baf752c7f1b090a4081146b22d0 Mon Sep 17 00:00:00 2001
+From: mytai20100 <142713298+Mytai20100@users.noreply.github.com>
+Date: Tue, 28 Jul 2026 16:01:24 +0700
+Subject: [PATCH 4/4] feat(vi) new strings
+
+---
+ LICENSE                                              |  0
+ README.md                                            |  0
+ lombok.config                                        |  0
+ pom.xml                                              |  0
+ .../io/github/mooy1/infinitylib/InfinityLib.java     |  0
+ .../mooy1/infinitylib/commands/AddonCommand.java     |  2 +-
+ .../mooy1/infinitylib/commands/AliasesCommand.java   |  4 ++--
+ .../mooy1/infinitylib/commands/HelpCommand.java      |  4 ++--
+ .../mooy1/infinitylib/commands/InfoCommand.java      | 10 +++++-----
+ .../mooy1/infinitylib/commands/ParentCommand.java    |  0
+ .../mooy1/infinitylib/commands/SubCommand.java       |  0
+ .../github/mooy1/infinitylib/common/CoolDowns.java   |  0
+ .../io/github/mooy1/infinitylib/common/Events.java   |  0
+ .../mooy1/infinitylib/common/PersistentType.java     |  0
+ .../github/mooy1/infinitylib/common/Scheduler.java   |  0
+ .../github/mooy1/infinitylib/common/StackUtils.java  |  0
+ .../github/mooy1/infinitylib/common/StringUtils.java |  0
+ .../github/mooy1/infinitylib/core/AbstractAddon.java |  0
+ .../github/mooy1/infinitylib/core/AddonConfig.java   |  0
+ .../github/mooy1/infinitylib/core/Environment.java   |  0
+ .../github/mooy1/infinitylib/core/PathBuilder.java   |  0
+ .../github/mooy1/infinitylib/groups/MultiGroup.java  |  0
+ .../io/github/mooy1/infinitylib/groups/SubGroup.java |  0
+ .../infinitylib/machines/AbstractMachineBlock.java   |  0
+ .../mooy1/infinitylib/machines/CraftingBlock.java    |  8 ++++----
+ .../infinitylib/machines/CraftingBlockRecipe.java    |  0
+ .../mooy1/infinitylib/machines/MachineBlock.java     |  0
+ .../infinitylib/machines/MachineBlockRecipe.java     |  0
+ .../mooy1/infinitylib/machines/MachineInput.java     |  0
+ .../mooy1/infinitylib/machines/MachineLayout.java    |  0
+ .../mooy1/infinitylib/machines/MachineLore.java      |  4 ++--
+ .../infinitylib/machines/MachineRecipeType.java      |  0
+ .../github/mooy1/infinitylib/machines/MenuBlock.java | 12 ++++++------
+ .../mooy1/infinitylib/machines/MenuBlockPreset.java  |  0
+ .../mooy1/infinitylib/machines/TickingMenuBlock.java |  0
+ 35 files changed, 22 insertions(+), 22 deletions(-)
+ mode change 100644 => 100755 LICENSE
+ mode change 100644 => 100755 README.md
+ mode change 100644 => 100755 lombok.config
+ mode change 100644 => 100755 pom.xml
+ mode change 100644 => 100755 src/main/java-templates/io/github/mooy1/infinitylib/InfinityLib.java
+ mode change 100644 => 100755 src/main/java/io/github/mooy1/infinitylib/commands/AddonCommand.java
+ mode change 100644 => 100755 src/main/java/io/github/mooy1/infinitylib/commands/AliasesCommand.java
+ mode change 100644 => 100755 src/main/java/io/github/mooy1/infinitylib/commands/HelpCommand.java
+ mode change 100644 => 100755 src/main/java/io/github/mooy1/infinitylib/commands/InfoCommand.java
+ mode change 100644 => 100755 src/main/java/io/github/mooy1/infinitylib/commands/ParentCommand.java
+ mode change 100644 => 100755 src/main/java/io/github/mooy1/infinitylib/commands/SubCommand.java
+ mode change 100644 => 100755 src/main/java/io/github/mooy1/infinitylib/common/CoolDowns.java
+ mode change 100644 => 100755 src/main/java/io/github/mooy1/infinitylib/common/Events.java
+ mode change 100644 => 100755 src/main/java/io/github/mooy1/infinitylib/common/PersistentType.java
+ mode change 100644 => 100755 src/main/java/io/github/mooy1/infinitylib/common/Scheduler.java
+ mode change 100644 => 100755 src/main/java/io/github/mooy1/infinitylib/common/StackUtils.java
+ mode change 100644 => 100755 src/main/java/io/github/mooy1/infinitylib/common/StringUtils.java
+ mode change 100644 => 100755 src/main/java/io/github/mooy1/infinitylib/core/AbstractAddon.java
+ mode change 100644 => 100755 src/main/java/io/github/mooy1/infinitylib/core/AddonConfig.java
+ mode change 100644 => 100755 src/main/java/io/github/mooy1/infinitylib/core/Environment.java
+ mode change 100644 => 100755 src/main/java/io/github/mooy1/infinitylib/core/PathBuilder.java
+ mode change 100644 => 100755 src/main/java/io/github/mooy1/infinitylib/groups/MultiGroup.java
+ mode change 100644 => 100755 src/main/java/io/github/mooy1/infinitylib/groups/SubGroup.java
+ mode change 100644 => 100755 src/main/java/io/github/mooy1/infinitylib/machines/AbstractMachineBlock.java
+ mode change 100644 => 100755 src/main/java/io/github/mooy1/infinitylib/machines/CraftingBlock.java
+ mode change 100644 => 100755 src/main/java/io/github/mooy1/infinitylib/machines/CraftingBlockRecipe.java
+ mode change 100644 => 100755 src/main/java/io/github/mooy1/infinitylib/machines/MachineBlock.java
+ mode change 100644 => 100755 src/main/java/io/github/mooy1/infinitylib/machines/MachineBlockRecipe.java
+ mode change 100644 => 100755 src/main/java/io/github/mooy1/infinitylib/machines/MachineInput.java
+ mode change 100644 => 100755 src/main/java/io/github/mooy1/infinitylib/machines/MachineLayout.java
+ mode change 100644 => 100755 src/main/java/io/github/mooy1/infinitylib/machines/MachineLore.java
+ mode change 100644 => 100755 src/main/java/io/github/mooy1/infinitylib/machines/MachineRecipeType.java
+ mode change 100644 => 100755 src/main/java/io/github/mooy1/infinitylib/machines/MenuBlock.java
+ mode change 100644 => 100755 src/main/java/io/github/mooy1/infinitylib/machines/MenuBlockPreset.java
+ mode change 100644 => 100755 src/main/java/io/github/mooy1/infinitylib/machines/TickingMenuBlock.java
+
+diff --git a/LICENSE b/LICENSE
+old mode 100644
+new mode 100755
+diff --git a/README.md b/README.md
+old mode 100644
+new mode 100755
+diff --git a/lombok.config b/lombok.config
+old mode 100644
+new mode 100755
+diff --git a/pom.xml b/pom.xml
+old mode 100644
+new mode 100755
+diff --git a/src/main/java-templates/io/github/mooy1/infinitylib/InfinityLib.java b/src/main/java-templates/io/github/mooy1/infinitylib/InfinityLib.java
+old mode 100644
+new mode 100755
+diff --git a/src/main/java/io/github/mooy1/infinitylib/commands/AddonCommand.java b/src/main/java/io/github/mooy1/infinitylib/commands/AddonCommand.java
+old mode 100644
+new mode 100755
+index e4c5880..78188eb
+--- a/src/main/java/io/github/mooy1/infinitylib/commands/AddonCommand.java
++++ b/src/main/java/io/github/mooy1/infinitylib/commands/AddonCommand.java
+@@ -34,7 +34,7 @@ public final class AddonCommand extends ParentCommand implements TabExecutor, Li
+ 
+     public AddonCommand(String command) {
+         this(Objects.requireNonNull(AbstractAddon.instance().getCommand(command),
+-                "指令 '" + command + "' 不存在! 在 plugin.yml 中添加该指令!"));
++                "Lệnh '" + command + "' không tồn tại! Hãy thêm lệnh này vào plugin.yml!"));
+     }
+ 
+     public AddonCommand(PluginCommand command) {
+diff --git a/src/main/java/io/github/mooy1/infinitylib/commands/AliasesCommand.java b/src/main/java/io/github/mooy1/infinitylib/commands/AliasesCommand.java
+old mode 100644
+new mode 100755
+index 661eb33..9040102
+--- a/src/main/java/io/github/mooy1/infinitylib/commands/AliasesCommand.java
++++ b/src/main/java/io/github/mooy1/infinitylib/commands/AliasesCommand.java
+@@ -13,8 +13,8 @@ final class AliasesCommand extends SubCommand {
+     private final String message;
+ 
+     AliasesCommand(PluginCommand command) {
+-        super("aliases", "列出该指令所有可用的别名");
+-        message = "/" + command.getName() + " 的可用别名: " + command.getAliases();
++        super("aliases", "Liệt kê tất cả các bí danh khả dụng cho lệnh này");
++        message = "/" + command.getName() + " bí danh khả dụng: " + command.getAliases();
+     }
+ 
+     @Override
+diff --git a/src/main/java/io/github/mooy1/infinitylib/commands/HelpCommand.java b/src/main/java/io/github/mooy1/infinitylib/commands/HelpCommand.java
+old mode 100644
+new mode 100755
+index c38b978..2dab58e
+--- a/src/main/java/io/github/mooy1/infinitylib/commands/HelpCommand.java
++++ b/src/main/java/io/github/mooy1/infinitylib/commands/HelpCommand.java
+@@ -15,14 +15,14 @@ final class HelpCommand extends SubCommand {
+     private final ParentCommand command;
+ 
+     HelpCommand(ParentCommand command) {
+-        super("help", "显示此帮助");
++        super("help", "Hiển thị trợ giúp này");
+         this.command = command;
+     }
+ 
+     @Override
+     public void execute(CommandSender sender, String[] args) {
+         sender.sendMessage("");
+-        sender.sendMessage(ChatColors.color("&7----------&b /" + command.fullName() + " 帮助 &7----------"));
++        sender.sendMessage(ChatColors.color("&7----------&b /" + command.fullName() + " Trợ giúp &7----------"));
+         sender.sendMessage("");
+         for (SubCommand sub : command.available(sender)) {
+             sender.sendMessage("/" + sub.fullName() + ChatColor.YELLOW + " - " + sub.description());
+diff --git a/src/main/java/io/github/mooy1/infinitylib/commands/InfoCommand.java b/src/main/java/io/github/mooy1/infinitylib/commands/InfoCommand.java
+old mode 100644
+new mode 100755
+index 6875bee..aa117fe
+--- a/src/main/java/io/github/mooy1/infinitylib/commands/InfoCommand.java
++++ b/src/main/java/io/github/mooy1/infinitylib/commands/InfoCommand.java
+@@ -16,15 +16,15 @@ final class InfoCommand extends SubCommand {
+     private final String[] message;
+ 
+     InfoCommand(SlimefunAddon addon) {
+-        super("info", "显示附属插件与Slimefun的版本信息，以及discord服务器");
++        super("info", "Hiển thị thông tin phiên bản của addon và Slimefun, cùng với Discord");
+         Slimefun slimefun = Slimefun.instance();
+         message = new String[] {
+                 "",
+-                ChatColors.color("&b" + addon.getName() + " 信息"),
+-                ChatColors.color("&bSlimefun 版本: &7" + (slimefun == null ? "null" : slimefun.getPluginVersion())),
++                ChatColors.color("&b" + addon.getName() + " Thông tin"),
++                ChatColors.color("&bSlimefun Phiên bản: &7" + (slimefun == null ? "null" : slimefun.getPluginVersion())),
+                 ChatColors.color("&bSlimefun Discord: &7Discord.gg/slimefun"),
+-                ChatColors.color("&b附属插件 版本: &7" + addon.getPluginVersion()),
+-                ChatColors.color("&b附属社区 Discord: &7Discord.gg/SqD3gg5SAU"),
++                ChatColors.color("&bAddon Phiên bản: &7" + addon.getPluginVersion()),
++                ChatColors.color("&bCộng đồng Discord: &7Discord.gg/SqD3gg5SAU"),
+                 ChatColors.color("&bGithub: &7" + addon.getBugTrackerURL()),
+                 ""
+         };
+diff --git a/src/main/java/io/github/mooy1/infinitylib/commands/ParentCommand.java b/src/main/java/io/github/mooy1/infinitylib/commands/ParentCommand.java
+old mode 100644
+new mode 100755
+diff --git a/src/main/java/io/github/mooy1/infinitylib/commands/SubCommand.java b/src/main/java/io/github/mooy1/infinitylib/commands/SubCommand.java
+old mode 100644
+new mode 100755
+diff --git a/src/main/java/io/github/mooy1/infinitylib/common/CoolDowns.java b/src/main/java/io/github/mooy1/infinitylib/common/CoolDowns.java
+old mode 100644
+new mode 100755
+diff --git a/src/main/java/io/github/mooy1/infinitylib/common/Events.java b/src/main/java/io/github/mooy1/infinitylib/common/Events.java
+old mode 100644
+new mode 100755
+diff --git a/src/main/java/io/github/mooy1/infinitylib/common/PersistentType.java b/src/main/java/io/github/mooy1/infinitylib/common/PersistentType.java
+old mode 100644
+new mode 100755
+diff --git a/src/main/java/io/github/mooy1/infinitylib/common/Scheduler.java b/src/main/java/io/github/mooy1/infinitylib/common/Scheduler.java
+old mode 100644
+new mode 100755
+diff --git a/src/main/java/io/github/mooy1/infinitylib/common/StackUtils.java b/src/main/java/io/github/mooy1/infinitylib/common/StackUtils.java
+old mode 100644
+new mode 100755
+diff --git a/src/main/java/io/github/mooy1/infinitylib/common/StringUtils.java b/src/main/java/io/github/mooy1/infinitylib/common/StringUtils.java
+old mode 100644
+new mode 100755
+diff --git a/src/main/java/io/github/mooy1/infinitylib/core/AbstractAddon.java b/src/main/java/io/github/mooy1/infinitylib/core/AbstractAddon.java
+old mode 100644
+new mode 100755
+diff --git a/src/main/java/io/github/mooy1/infinitylib/core/AddonConfig.java b/src/main/java/io/github/mooy1/infinitylib/core/AddonConfig.java
+old mode 100644
+new mode 100755
+diff --git a/src/main/java/io/github/mooy1/infinitylib/core/Environment.java b/src/main/java/io/github/mooy1/infinitylib/core/Environment.java
+old mode 100644
+new mode 100755
+diff --git a/src/main/java/io/github/mooy1/infinitylib/core/PathBuilder.java b/src/main/java/io/github/mooy1/infinitylib/core/PathBuilder.java
+old mode 100644
+new mode 100755
+diff --git a/src/main/java/io/github/mooy1/infinitylib/groups/MultiGroup.java b/src/main/java/io/github/mooy1/infinitylib/groups/MultiGroup.java
+old mode 100644
+new mode 100755
+diff --git a/src/main/java/io/github/mooy1/infinitylib/groups/SubGroup.java b/src/main/java/io/github/mooy1/infinitylib/groups/SubGroup.java
+old mode 100644
+new mode 100755
+diff --git a/src/main/java/io/github/mooy1/infinitylib/machines/AbstractMachineBlock.java b/src/main/java/io/github/mooy1/infinitylib/machines/AbstractMachineBlock.java
+old mode 100644
+new mode 100755
+diff --git a/src/main/java/io/github/mooy1/infinitylib/machines/CraftingBlock.java b/src/main/java/io/github/mooy1/infinitylib/machines/CraftingBlock.java
+old mode 100644
+new mode 100755
+index c7642de..23d7eee
+--- a/src/main/java/io/github/mooy1/infinitylib/machines/CraftingBlock.java
++++ b/src/main/java/io/github/mooy1/infinitylib/machines/CraftingBlock.java
+@@ -29,7 +29,7 @@ import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
+ @ParametersAreNonnullByDefault
+ public class CraftingBlock extends MenuBlock {
+ 
+-    public static final ItemStack CLICK_TO_CRAFT = new CustomItemStack(Material.LIME_STAINED_GLASS_PANE, "&a点击合成!");
++    public static final ItemStack CLICK_TO_CRAFT = new CustomItemStack(Material.LIME_STAINED_GLASS_PANE, "&aChế tạo!");
+ 
+     @Setter
+     protected MachineLayout layout = MachineLayout.CRAFTING_DEFAULT;
+@@ -55,13 +55,13 @@ public class CraftingBlock extends MenuBlock {
+                     onSuccessfulCraft(menu, output);
+                     menu.pushItem(output, layout.outputSlots());
+                     recipe.consume(input);
+-                    p.sendMessage(ChatColor.GREEN + "已合成: " + ItemUtils.getItemName(output));
++                    p.sendMessage(ChatColor.GREEN + "Đã chế tạo: " + ItemUtils.getItemName(output));
+                 } else {
+-                    p.sendMessage(ChatColor.GOLD + "空间不足!");
++                    p.sendMessage(ChatColor.GOLD + "Không đủ chỗ!");
+                 }
+             }
+         } else {
+-            p.sendMessage(ChatColor.RED + "无效的配方!");
++            p.sendMessage(ChatColor.RED + "Công thức không hợp lệ!");
+         }
+     }
+ 
+diff --git a/src/main/java/io/github/mooy1/infinitylib/machines/CraftingBlockRecipe.java b/src/main/java/io/github/mooy1/infinitylib/machines/CraftingBlockRecipe.java
+old mode 100644
+new mode 100755
+diff --git a/src/main/java/io/github/mooy1/infinitylib/machines/MachineBlock.java b/src/main/java/io/github/mooy1/infinitylib/machines/MachineBlock.java
+old mode 100644
+new mode 100755
+diff --git a/src/main/java/io/github/mooy1/infinitylib/machines/MachineBlockRecipe.java b/src/main/java/io/github/mooy1/infinitylib/machines/MachineBlockRecipe.java
+old mode 100644
+new mode 100755
+diff --git a/src/main/java/io/github/mooy1/infinitylib/machines/MachineInput.java b/src/main/java/io/github/mooy1/infinitylib/machines/MachineInput.java
+old mode 100644
+new mode 100755
+diff --git a/src/main/java/io/github/mooy1/infinitylib/machines/MachineLayout.java b/src/main/java/io/github/mooy1/infinitylib/machines/MachineLayout.java
+old mode 100644
+new mode 100755
+diff --git a/src/main/java/io/github/mooy1/infinitylib/machines/MachineLore.java b/src/main/java/io/github/mooy1/infinitylib/machines/MachineLore.java
+old mode 100644
+new mode 100755
+index 938ac28..9ae85cb
+--- a/src/main/java/io/github/mooy1/infinitylib/machines/MachineLore.java
++++ b/src/main/java/io/github/mooy1/infinitylib/machines/MachineLore.java
+@@ -27,7 +27,7 @@ public final class MachineLore {
+ 
+     @Nonnull
+     public static String energyBuffer(int energy) {
+-        return PREFIX + format(energy) + " J 可储存";
++        return PREFIX + format(energy) + " J lưu trữ";
+     }
+ 
+     @Nonnull
+@@ -37,7 +37,7 @@ public final class MachineLore {
+ 
+     @Nonnull
+     public static String speed(int speed) {
+-        return PREFIX + "速度: &b" + speed + 'x';
++        return PREFIX + "Tốc độ: &b" + speed + 'x';
+     }
+ 
+     @Nonnull
+diff --git a/src/main/java/io/github/mooy1/infinitylib/machines/MachineRecipeType.java b/src/main/java/io/github/mooy1/infinitylib/machines/MachineRecipeType.java
+old mode 100644
+new mode 100755
+diff --git a/src/main/java/io/github/mooy1/infinitylib/machines/MenuBlock.java b/src/main/java/io/github/mooy1/infinitylib/machines/MenuBlock.java
+old mode 100644
+new mode 100755
+index 8fbcd7d..594a746
+--- a/src/main/java/io/github/mooy1/infinitylib/machines/MenuBlock.java
++++ b/src/main/java/io/github/mooy1/infinitylib/machines/MenuBlock.java
+@@ -29,12 +29,12 @@ import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
+ @ParametersAreNonnullByDefault
+ public abstract class MenuBlock extends SlimefunItem {
+ 
+-    public static final ItemStack PROCESSING_ITEM = new CustomItemStack(Material.LIME_STAINED_GLASS_PANE, "&a处理中...");
+-    public static final ItemStack NO_ENERGY_ITEM = new CustomItemStack(Material.RED_STAINED_GLASS_PANE, "&c电力不足!");
+-    public static final ItemStack IDLE_ITEM = new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, "&8空闲");
+-    public static final ItemStack NO_ROOM_ITEM = new CustomItemStack(Material.ORANGE_STAINED_GLASS_PANE, "&6空间不足!");
+-    public static final ItemStack OUTPUT_BORDER = new CustomItemStack(ChestMenuUtils.getOutputSlotTexture(), "&6输出");
+-    public static final ItemStack INPUT_BORDER = new CustomItemStack(ChestMenuUtils.getInputSlotTexture(), "&9输入");
++    public static final ItemStack PROCESSING_ITEM = new CustomItemStack(Material.LIME_STAINED_GLASS_PANE, "&aĐang xử lý...");
++    public static final ItemStack NO_ENERGY_ITEM = new CustomItemStack(Material.RED_STAINED_GLASS_PANE, "&cKhông đủ điện!");
++    public static final ItemStack IDLE_ITEM = new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, "&8Nhàn rỗi");
++    public static final ItemStack NO_ROOM_ITEM = new CustomItemStack(Material.ORANGE_STAINED_GLASS_PANE, "&6Không đủ chỗ!");
++    public static final ItemStack OUTPUT_BORDER = new CustomItemStack(ChestMenuUtils.getOutputSlotTexture(), "&6Đầu ra");
++    public static final ItemStack INPUT_BORDER = new CustomItemStack(ChestMenuUtils.getInputSlotTexture(), "&9Đầu vào");
+     public static final ItemStack BACKGROUND_ITEM = ChestMenuUtils.getBackground();
+ 
+     public MenuBlock(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+diff --git a/src/main/java/io/github/mooy1/infinitylib/machines/MenuBlockPreset.java b/src/main/java/io/github/mooy1/infinitylib/machines/MenuBlockPreset.java
+old mode 100644
+new mode 100755
+diff --git a/src/main/java/io/github/mooy1/infinitylib/machines/TickingMenuBlock.java b/src/main/java/io/github/mooy1/infinitylib/machines/TickingMenuBlock.java
+old mode 100644
+new mode 100755
+-- 
+2.47.3
+
