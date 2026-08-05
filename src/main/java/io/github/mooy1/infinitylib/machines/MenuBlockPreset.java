@@ -8,6 +8,8 @@ import org.bukkit.inventory.ItemStack;
 
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
@@ -26,6 +28,12 @@ final class MenuBlockPreset extends BlockMenuPreset {
 
     @Override
     public void newInstance(BlockMenu menu, Block b) {
+        SlimefunBlockData blockData = StorageCacheUtils.getBlock(b.getLocation());
+
+        if (blockData == null || !blockData.isDataLoaded()) {
+            return;
+        }
+
         menuBlock.onNewInstance(menu, b);
     }
 
