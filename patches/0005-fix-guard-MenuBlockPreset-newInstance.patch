@@ -1,27 +1,12 @@
 From b16e267ae7fe36d1a480b1d4a8938d4dd339c590 Mon Sep 17 00:00:00 2001
 From: mytai20100 <142713298+Mytai20100@users.noreply.github.com>
 Date: Wed, 5 Aug 2026 22:08:42 +0700
-Subject: [PATCH] fix: guard MenuBlockPreset newInstance and bump lombok to
- 1.18.32
+Subject: [PATCH] fix: guard MenuBlockPreset newInstance
 
 ---
- pom.xml                                                   | 2 +-
- .../mooy1/infinitylib/machines/MenuBlockPreset.java       | 8 ++++++++
- 2 files changed, 9 insertions(+), 1 deletion(-)
+ src/main/java/io/github/mooy1/infinitylib/machines/MenuBlockPreset.java | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/pom.xml b/pom.xml
-index 9cc8342..0313430 100644
---- a/pom.xml
-+++ b/pom.xml
-@@ -61,7 +61,7 @@
-         <dependency>
-             <groupId>org.projectlombok</groupId>
-             <artifactId>lombok</artifactId>
--            <version>1.18.20</version>
-+            <version>1.18.32</version>
-             <scope>provided</scope>
-         </dependency>
- 
 diff --git a/src/main/java/io/github/mooy1/infinitylib/machines/MenuBlockPreset.java b/src/main/java/io/github/mooy1/infinitylib/machines/MenuBlockPreset.java
 index 4f51b7d..c6536c9 100644
 --- a/src/main/java/io/github/mooy1/infinitylib/machines/MenuBlockPreset.java
@@ -50,4 +35,3 @@ index 4f51b7d..c6536c9 100644
  
 -- 
 2.47.3
-
